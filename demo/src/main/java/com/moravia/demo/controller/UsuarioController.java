@@ -91,7 +91,7 @@ public class UsuarioController {
 
         if (result.hasErrors()) {
             model.addAttribute("usuario", usuario);
-            return "editar_usuario";
+            return "perfil_usuario";
         }
 
         try {
@@ -102,7 +102,7 @@ public class UsuarioController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error al actualizar el usuario: " + e.getMessage());
             model.addAttribute("usuario", usuario);
-            return "editar_usuario";
+            return "perfil_usuario";
         }
     }
 

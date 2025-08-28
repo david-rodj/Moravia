@@ -1,102 +1,104 @@
-[
-  {
-    "idUsuario": "1",
-    "correo": "juan.perez@example.com",
-    "clave": "clave123",
-    "nombre": "Juan",
-    "apellido": "Pérez",
-    "cedula": "1234567890",
-    "telefono": "+57 3001234567",
-    "fotoPerfil": "https://randomuser.me/api/portraits/men/1.jpg"
-  },
-  {
-    "idUsuario": "2",
-    "correo": "maria.gomez@example.com",
-    "clave": "pass456",
-    "nombre": "María",
-    "apellido": "Gómez",
-    "cedula": "9876543210",
-    "telefono": "+57 3012345678",
-    "fotoPerfil": "https://randomuser.me/api/portraits/women/2.jpg"
-  },
-  {
-    "idUsuario": "3",
-    "correo": "carlos.lopez@example.com",
-    "clave": "secure789",
-    "nombre": "Carlos",
-    "apellido": "López",
-    "cedula": "1122334455",
-    "telefono": "+57 3023456789",
-    "fotoPerfil": "https://randomuser.me/api/portraits/men/3.jpg"
-  },
-  {
-    "idUsuario": "4",
-    "correo": "laura.martinez@example.com",
-    "clave": "clave987",
-    "nombre": "Laura",
-    "apellido": "Martínez",
-    "cedula": "2233445566",
-    "telefono": "+57 3034567890",
-    "fotoPerfil": "https://randomuser.me/api/portraits/women/4.jpg"
-  },
-  {
-    "idUsuario": "5",
-    "correo": "andres.ramirez@example.com",
-    "clave": "pass321",
-    "nombre": "Andrés",
-    "apellido": "Ramírez",
-    "cedula": "3344556677",
-    "telefono": "+57 3045678901",
-    "fotoPerfil": "https://randomuser.me/api/portraits/men/5.jpg"
-  },
-  {
-    "idUsuario": "6",
-    "correo": "sofia.torres@example.com",
-    "clave": "sofia456",
-    "nombre": "Sofía",
-    "apellido": "Torres",
-    "cedula": "4455667788",
-    "telefono": "+57 3056789012",
-    "fotoPerfil": "https://randomuser.me/api/portraits/women/6.jpg"
-  },
-  {
-    "idUsuario": "7",
-    "correo": "pedro.morales@example.com",
-    "clave": "pedro789",
-    "nombre": "Pedro",
-    "apellido": "Morales",
-    "cedula": "5566778899",
-    "telefono": "+57 3067890123",
-    "fotoPerfil": "https://randomuser.me/api/portraits/men/7.jpg"
-  },
-  {
-    "idUsuario": "8",
-    "correo": "camila.hernandez@example.com",
-    "clave": "camila123",
-    "nombre": "Camila",
-    "apellido": "Hernández",
-    "cedula": "6677889900",
-    "telefono": "+57 3078901234",
-    "fotoPerfil": "https://randomuser.me/api/portraits/women/8.jpg"
-  },
-  {
-    "idUsuario": "9",
-    "correo": "diego.flores@example.com",
-    "clave": "diego456",
-    "nombre": "Diego",
-    "apellido": "Flores",
-    "cedula": "7788990011",
-    "telefono": "+57 3089012345",
-    "fotoPerfil": "https://randomuser.me/api/portraits/men/9.jpg"
-  },
-  {
-    "idUsuario": "10",
-    "correo": "valentina.rojas@example.com",
-    "clave": "valen789",
-    "nombre": "Valentina",
-    "apellido": "Rojas",
-    "cedula": "8899001122",
-    "telefono": "+57 3090123456",
-    "fotoPerfil": "https://randomuser.me/api/portraits/women/10.jpg"
-  }
-]
+{
+  "usuarios": [
+    {
+      "idUsuario": "1",
+      "correo": "juan.perez@example.com",
+      "clave": "clave123",
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "cedula": "1234567890",
+      "telefono": "+57 3001234567",
+      "fotoPerfil": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "idUsuario": "2",
+      "correo": "maria.gomez@example.com",
+      "clave": "pass456",
+      "nombre": "María",
+      "apellido": "Gómez",
+      "cedula": "9876543210",
+      "telefono": "+57 3012345678",
+      "fotoPerfil": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+      "idUsuario": "3",
+      "correo": "carlos.lopez@example.com",
+      "clave": "secure789",
+      "nombre": "Carlos",
+      "apellido": "López",
+      "cedula": "1122334455",
+      "telefono": "+57 3023456789",
+      "fotoPerfil": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "idUsuario": "4",
+      "correo": "laura.martinez@example.com",
+      "clave": "clave987",
+      "nombre": "Laura",
+      "apellido": "Martínez",
+      "cedula": "2233445566",
+      "telefono": "+57 3034567890",
+      "fotoPerfil": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+      "idUsuario": "5",
+      "correo": "andres.ramirez@example.com",
+      "clave": "pass321",
+      "nombre": "Andrés",
+      "apellido": "Ramírez",
+      "cedula": "3344556677",
+      "telefono": "+57 3045678901",
+      "fotoPerfil": "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+      "idUsuario": "6",
+      "correo": "sofia.torres@example.com",
+      "clave": "sofia456",
+      "nombre": "Sofía",
+      "apellido": "Torres",
+      "cedula": "4455667788",
+      "telefono": "+57 3056789012",
+      "fotoPerfil": "https://randomuser.me/api/portraits/women/6.jpg"
+    },
+    {
+      "idUsuario": "7",
+      "correo": "pedro.morales@example.com",
+      "clave": "pedro789",
+      "nombre": "Pedro",
+      "apellido": "Morales",
+      "cedula": "5566778899",
+      "telefono": "+57 3067890123",
+      "fotoPerfil": "https://randomuser.me/api/portraits/men/7.jpg"
+    },
+    {
+      "idUsuario": "8",
+      "correo": "camila.hernandez@example.com",
+      "clave": "camila123",
+      "nombre": "Camila",
+      "apellido": "Hernández",
+      "cedula": "6677889900",
+      "telefono": "+57 3078901234",
+      "fotoPerfil": "https://randomuser.me/api/portraits/women/8.jpg"
+    },
+    {
+      "idUsuario": "9",
+      "correo": "diego.flores@example.com",
+      "clave": "diego456",
+      "nombre": "Diego",
+      "apellido": "Flores",
+      "cedula": "7788990011",
+      "telefono": "+57 3089012345",
+      "fotoPerfil": "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+      "idUsuario": "10",
+      "correo": "valentina.rojas@example.com",
+      "clave": "valen789",
+      "nombre": "Valentina",
+      "apellido": "Rojas",
+      "cedula": "8899001122",
+      "telefono": "+57 3090123456",
+      "fotoPerfil": "https://randomuser.me/api/portraits/women/10.jpg"
+    }
+  ]
+}
