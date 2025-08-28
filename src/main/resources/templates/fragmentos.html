@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- templates/fragmentos.html -->
+<header th:fragment="header">
+  <div class="logo">
+    <a href="/"><img src="/img/logo_old_white.png" alt="Logo"></a>
+    <a class="titulo-logo" href="/"><img src="/img/title_old_white.png" alt="Title"></a>
+  </div>
+
+  <a href="reservas.html" class="button2">Reservar</a>
+  <a href="login.html" class="button2">Login</a>
+
+  <!-- Botón hamburguesa -->
+  <button class="hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#navOffcanvas"
+          aria-controls="navOffcanvas" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Offcanvas -->
+  <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="navOffcanvas"
+       aria-labelledby="navOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="navOffcanvasLabel">The Moravia</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="menu">
+        <li><a href="#">Reserva</a></li>
+        <li><a href="#">Habitaciones</a></li>
+        <li><a href="/tabla_servicios">Nuestros servicios</a></li>
+        <li><a href="#">Historia</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<footer th:fragment="footer">
+  <div class="footer-wrap">
+    <div class="footer-col news">
+      <p class="lead">Tenemos numerosas novedades,<br>sé el primero en descubrirlas</p>
+      <label for="correo" class="label">CORREO ELECTRÓNICO</label>
+      <form class="signup" action="#" method="post">
+        <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
+        <button class="ButtonLog">Registrarse</button>
+      </form>
+    </div>
+    <div class="footer-col contact">
+      <hr class="datos">
+      <address>
+        U Lužického semináře, 118 00 Malá Strana, Czechia<br>
+        +420 123 456 789<br>
+        <a href="mailto:reception@themoraviah​otel.cz">reception@themoraviahotel.cz</a>
+      </address>
+      <div class="footer-socials">
+        <!-- tus SVGs -->
+      </div>
+    </div>
+    <div class="footer-col brand">
+      <img src="/img/logo_old_white.png" alt="Escudo" class="crest">
+    </div>
+  </div>
+  <p class="legal">© 2025 The Moravia Hotel. All rights reserved.</p>
+</footer>
+</body>
+</html>

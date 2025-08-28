@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="'Perfil de ' + ${usuario.nombre}">Perfil de usuario</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/perfil_usuario.css" />
+  </head>
+  <style>
+    :root {
+      --plum: #7b4283;
+      --pink: #e74c3c;
+      --rose: #d63384;
+      --muted: #6c757d;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      background-color: #f8f9fa;
+      font-family: "DM Serif Display", "Segoe UI", Tahoma, Geneva, Verdana,
+        sans-serif;
+    }
+
+    .profile-header {
+      background: linear-gradient(135deg, #1f5f87, #2c5aa0, #1f5f87);
+      color: white;
+      padding: 3rem 0;
+      margin-bottom: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+      );
+      pointer-events: none;
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 1rem 0 0.5rem 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-username {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      font-weight: 400;
+      color: color-mix(in srgb, #ffcb0e 82%, #ffffff 18%);
+    }
+
+    .profile-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: none;
+      margin-top: -50px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .form-section {
+      padding: 2rem;
+    }
+
+    .section-title {
+      color: #1f5f87;
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid color-mix(in srgb, #1f5f87 20%, #e9ecef 80%);
+      font-family: "DM Serif Display";
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #1f5f87;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      background-color: #fdfdfd;
+    }
+
+    .form-control:focus {
+      border-color: #1f5f87;
+      box-shadow: 0 0 0 0.2rem rgba(31, 95, 135, 0.15);
+      background-color: white;
+    }
+
+    .form-control:read-only {
+      background-color: #f8f9fa;
+      border-color: #dee2e6;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1f5f87, #2c5aa0);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 2rem;
+      font-weight: 900;
+      transition: all 0.3s ease;
+      font-family: "DM Serif Display";
+      letter-spacing: 0.4px;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #184a6b, #1f5f87);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(31, 95, 135, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: var(--muted);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 2rem;
+      font-weight: 900;
+      transition: all 0.3s ease;
+      font-family: "DM Serif Display";
+      letter-spacing: 0.4px;
+    }
+
+    .btn-secondary:hover {
+      background-color: #545b62;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-primary {
+      color: #1f5f87;
+      border: 2px solid #1f5f87;
+      border-radius: 8px;
+      font-weight: 900;
+      transition: all 0.3s ease;
+      font-family: "DM Serif Display";
+      letter-spacing: 0.4px;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #1f5f87;
+      border-color: #1f5f87;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-danger {
+      color: var(--pink);
+      border: 2px solid var(--pink);
+      border-radius: 8px;
+      font-weight: 900;
+      transition: all 0.3s ease;
+      font-family: "DM Serif Display";
+      letter-spacing: 0.4px;
+    }
+
+    .btn-outline-danger:hover {
+      background-color: var(--pink);
+      border-color: var(--pink);
+      transform: translateY(-1px);
+    }
+
+    .input-group .btn {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .form-text {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profile-header {
+        padding: 2rem 0;
+      }
+
+      .profile-name {
+        font-size: 1.5rem;
+      }
+
+      .profile-avatar {
+        width: 100px;
+        height: 100px;
+      }
+
+      .form-section {
+        padding: 1.5rem;
+      }
+
+      .profile-card {
+        margin-top: -30px;
+      }
+    }
+
+    /* Animaciones suaves */
+    .card {
+      transition: all 0.3s ease;
+    }
+
+    .form-control,
+    .btn {
+      transition: all 0.3s ease;
+    }
+
+    /* Efectos hover para los campos del formulario */
+    .form-control:not(:read-only):hover {
+      border-color: #1f5f87;
+    }
+
+    /* Mensaje de error o éxito */
+    .alert-custom {
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+  <body>
+    <!-- Header con perfil -->
+    <div class="profile-header">
+      <div class="container">
+        <div class="text-center">
+          <img
+            th:src="${usuario.fotoPerfil} ?: 'https://via.placeholder.com/280x280.png?text=' + ${usuario.nombre.charAt(0)} + '+' + ${usuario.apellido.charAt(0)}"
+            th:alt="'Foto de perfil de ' + ${usuario.nombre}"
+            class="profile-avatar"
+          />
+          <h1 class="profile-name" th:text="${usuario.nombre} + ' ' + ${usuario.apellido}">Nombre Completo</h1>
+          <p class="profile-username" th:text="'@' + ${usuario.correo.split('@')[0]}">@usuario</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario principal -->
+    <main class="container pb-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="card profile-card">
+            <!-- Mensajes de error o éxito -->
+            <div th:if="${mensaje}" class="alert alert-success alert-custom mx-4 mt-4" th:text="${mensaje}"></div>
+            <div th:if="${error}" class="alert alert-danger alert-custom mx-4 mt-4" th:text="${error}"></div>
+
+            <form th:action="@{/usuario/actualizar}" th:object="${usuario}" method="post" class="form-section">
+              <!-- Campo oculto para ID -->
+              <input type="hidden" th:field="*{idUsuario}" />
+              
+              <!-- Información Personal -->
+              <div class="mb-4">
+                <h4 class="section-title">Información Personal</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombres</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombre"
+                      th:field="*{nombre}"
+                      required
+                    />
+                    <div th:if="${#fields.hasErrors('nombre')}" class="text-danger small mt-1" th:errors="*{nombre}"></div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="apellido" class="form-label">Apellidos</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellido"
+                      th:field="*{apellido}"
+                      required
+                    />
+                    <div th:if="${#fields.hasErrors('apellido')}" class="text-danger small mt-1" th:errors="*{apellido}"></div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="correo" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="correo"
+                      th:field="*{correo}"
+                      required
+                    />
+                    <div th:if="${#fields.hasErrors('correo')}" class="text-danger small mt-1" th:errors="*{correo}"></div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="cedula" class="form-label">Cédula</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cedula"
+                      th:field="*{cedula}"
+                      required
+                    />
+                    <div th:if="${#fields.hasErrors('cedula')}" class="text-danger small mt-1" th:errors="*{cedula}"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Información de Contacto -->
+              <div class="mb-4">
+                <h4 class="section-title">Información de Contacto</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="telefono"
+                      th:field="*{telefono}"
+                    />
+                    <div th:if="${#fields.hasErrors('telefono')}" class="text-danger small mt-1" th:errors="*{telefono}"></div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="ubicacion" class="form-label">Ubicación</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="ubicacion"
+                      th:value="${ubicacion} ?: 'Bogotá, Colombia'"
+                      name="ubicacion"
+                      placeholder="Ciudad, País"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <label for="website" class="form-label">Sitio Web (opcional)</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="website"
+                      th:value="${website}"
+                      name="website"
+                      placeholder="https://tu-sitio.com"
+                    />
+                  </div>
+
+                  <div class="col-12">
+                    <label for="fotoPerfil" class="form-label">URL Foto de Perfil</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="fotoPerfil"
+                      th:field="*{fotoPerfil}"
+                      placeholder="https://ejemplo.com/tu-foto.jpg"
+                    />
+                    <small class="form-text">Deja en blanco para usar avatar por defecto</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cambiar Contraseña -->
+              <div class="mb-4">
+                <h4 class="section-title">Seguridad</h4>
+                <div class="alert alert-info">
+                  <i class="bi bi-info-circle me-2"></i>
+                  Deja estos campos en blanco si no deseas cambiar tu contraseña
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="nuevaClave" class="form-label">Nueva Contraseña</label>
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="nuevaClave"
+                        name="nuevaClave"
+                        placeholder="Nueva contraseña"
+                        minlength="6"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        onclick="togglePassword('nuevaClave', this)"
+                      >
+                        <i class="bi bi-eye-slash"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="confirmarClave" class="form-label">Confirmar Contraseña</label>
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="confirmarClave"
+                        name="confirmarClave"
+                        placeholder="Confirmar contraseña"
+                        minlength="6"
+                      />
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        onclick="togglePassword('confirmarClave', this)"
+                      >
+                        <i class="bi bi-eye-slash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Biografía -->
+              <div class="mb-4">
+                <label for="biografia" class="form-label">Biografía (opcional)</label>
+                <textarea
+                  class="form-control"
+                  id="biografia"
+                  name="biografia"
+                  rows="4"
+                  th:text="${biografia}"
+                  placeholder="Añade una breve descripción sobre ti..."
+                ></textarea>
+              </div>
+
+              <!-- Botones de acción -->
+              <div class="d-flex justify-content-end gap-2 flex-wrap">
+                <a th:href="@{/usuario/perfil}" class="btn btn-secondary">
+                  <i class="bi bi-arrow-left me-1"></i>
+                  Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-check-lg me-1"></i>
+                  Guardar cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function togglePassword(inputId, button) {
+        const input = document.getElementById(inputId);
+        const icon = button.querySelector("i");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.className = "bi bi-eye";
+        } else {
+          input.type = "password";
+          icon.className = "bi bi-eye-slash";
+        }
+      }
+
+      // Efecto de enfoque suave en los inputs
+      document.querySelectorAll(".form-control").forEach((input) => {
+        input.addEventListener("focus", function () {
+          this.parentElement.style.transform = "scale(1.02)";
+        });
+
+        input.addEventListener("blur", function () {
+          this.parentElement.style.transform = "scale(1)";
+        });
+      });
+
+      // Validación de contraseñas
+      document.getElementById('confirmarClave').addEventListener('input', function() {
+        const nuevaClave = document.getElementById('nuevaClave').value;
+        const confirmarClave = this.value;
+        
+        if (nuevaClave && confirmarClave && nuevaClave !== confirmarClave) {
+          this.setCustomValidity('Las contraseñas no coinciden');
+        } else {
+          this.setCustomValidity('');
+        }
+      });
+
+      // Si se llena una contraseña, la otra es requerida
+      document.getElementById('nuevaClave').addEventListener('input', function() {
+        const confirmarClave = document.getElementById('confirmarClave');
+        if (this.value) {
+          confirmarClave.required = true;
+        } else {
+          confirmarClave.required = false;
+          confirmarClave.setCustomValidity('');
+        }
+      });
+    </script>
+  </body>
+</html>

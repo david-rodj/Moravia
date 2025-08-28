@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Moravia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/header.css}" />
+  <link rel="stylesheet" th:href="@{/css/navbar.css}" />
+  <link rel="stylesheet" th:href="@{/css/footer.css}" />
+  <link rel="stylesheet" th:href="@{/css/landing.css}" />
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+  
+  <header th:replace="~{fragmentos :: header}"></header>
+  
+  <main>
+    <!-- TITULAR (encima del video) -->
+    <section class="hero_intro">
+      <h1><span class="nombre_bold">The Moravia</span></h1>
+    </section>
+
+    <!-- HERO principal con imagen -->
+    <section class="hero-main">
+      <img src="https://accidentallywesanderson.com/wp-content/uploads/2024/07/GrandhotelGiessbach_24_27.jpg"
+        alt="Fachada The Moravia" class="hero-img">
+    </section>
+
+    <section class="media-row">
+      <!-- Marco con el VIDEO -->
+      <div class="media-frame">
+        <video class="video-bg" autoplay muted loop playsinline poster="/img/poster.png">
+          <source src="https://giessbach.ch/images/video_uploads/SchiffHD_Web.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="book">
+        <h2>Bienvenidos a</h2>
+        <h2>The Moravia</h2>
+        <p>Somos el hotel de cinco estrellas más emblemático de Praga.</p>
+        <p> Un refugio en Malá Strana,mundialmente famoso por su elegancia histórica,su impecable servicio, sus
+          impresionantes habitaciones y suites, y su legendario kompot cuando cae la noche.</p>
+        <div class="cover">
+          <img th:src=@{/img/logo_blue.png} alt="Logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- RESTAURANTE -->
+    <section class="feature-hero">
+      <img
+        src="https://cldnr.prod.webx.talpa.digital/talpa-network/image/fetch/f_auto,c_limit,w_3840,q_auto/https://images.ctfassets.net/mwdlh7x5m54h/72sO8UnNUwLASrqMK86d3x/bb012a3c1006d7daa6d6ca8bf0fb2690/pexels-cottonbro-6466288.jpg"
+        alt="Restaurante - servicio en habitación">
+
+      <div class="feature-card">
+        <h3>Restaurante de tres estrellas <span>Michelin</span></h3>
+        <p>Agradable para todo tipo de paladares.</p>
+        <p>Reserva ahora una mesa en uno de los comedores más prestigiosos del mundo.</p>
+        <a href="reservas.html" class="button2">Reservar</a>
+      </div>
+    </section>
+
+
+    <!-- SUITES -->
+    <section class="suites-grid">
+      <article class="tile">
+        <div class="tile-media">
+          <img src="https://giessbach.ch/images/image_uploads/Giessbach-Suite-Wohnzimmer.jpg" alt="Suite 1">
+        </div>
+        <div class="tile-content">
+          <h1>Suites <em>Lujosas</em></h1>
+          <h2>Refinadas con una elegancia excepcional y atemporal, nuestras impresionantes suites de 5 estrellas le
+            dejarán sin aliento.</h2>
+          <div class="actions">
+            <button class="cta">
+              <span class="hover-underline-animation"> Mas informacion </span>
+              <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+                <path id="Path_10" data-name="Path 10"
+                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+                </path>
+              </svg>
+            </button>
+          </div>
+          <button class="cta">
+            <span class="hover-underline-animation"> Reservar ahora </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </button>
+        </div>
+        </div>
+      </article>
+
+      <article class="tile invert">
+        <div class="tile-media">
+          <img src="https://giessbach.ch/images/image_uploads/Suite-Horace-Edouard-Zimmer.jpg" alt="Suite 2">
+        </div>
+        <div class="tile-content">
+          <h1>Habitaciones <em>Inolvidables</em></h1>
+          <h2>Estancias bañadas en luz y detalles artesanales para un descanso perfecto.</h2>
+          <div class="actions">
+            <button class="cta">
+              <span class="hover-underline-animation"> Mas informacion </span>
+              <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+                <path id="Path_10" data-name="Path 10"
+                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+                </path>
+              </svg>
+            </button>
+          </div>
+          <button class="cta">
+            <span class="hover-underline-animation"> Reservar ahora </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </button>
+        </div>
+        </div>
+      </article>
+    </section>
+
+
+    <!--TARJETAS-->
+<section class="cards-carousel" style="overflow: hidden;">
+  <button class="cc-arrow cc-prev" aria-label="Anterior">‹</button>
+
+  <div class="cc-track" id="ccTrack" style="width: 60000px; overflow-x: auto;">
+
+    <!-- CARD: Restaurante Michelin 3 Estrellas -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://cldnr.prod.webx.talpa.digital/talpa-network/image/fetch/f_auto,c_limit,w_3840,q_auto/https://images.ctfassets.net/mwdlh7x5m54h/72sO8UnNUwLASrqMK86d3x/bb012a3c1006d7daa6d6ca8bf0fb2690/pexels-cottonbro-6466288.jpg" alt="Restaurante Michelin 3 Estrellas">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Restaurante Michelin 3 Estrellas</p>
+          <a href="/servicios/REST001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Spa Royal Bohemia -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://images.pexels.com/photos/6560304/pexels-photo-6560304.jpeg" alt="Spa Royal Bohemia">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Spa Royal Bohemia</p>
+          <a href="/servicios/SPA001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Bar Kompot Legendario -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://offloadmedia.feverup.com/secretsanfrancisco.com/wp-content/uploads/2023/02/13023230/68693037_151390299393573_6890019703301565669_n-2-1024x683.jpg" alt="Bar Kompot Legendario">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Bar Kompot Legendario</p>
+          <a href="/servicios/BAR001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Cafetería Imperial -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://swiss-historic-hotels.ch/bilder/hotels/grandhotel-giessbach/_AUTOxAUTO_crop_center-center_none/portrait-grandhotel-giessbach-brienz-swiss-historic-hotels-02.jpg" alt="Cafetería Imperial">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Cafetería Imperial</p>
+          <a href="/servicios/CAFE001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Piscina Infinity Castillo -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://giessbach.ch/images/image_uploads/GrandhotelGiessbach_%C2%A9DigitaleMassarbeit_503.jpg" alt="Piscina Infinity Castillo">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Piscina Infinity Castillo</p>
+          <a href="/servicios/POOL001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Servicio de Conserjería Premium -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://guianzalibre.com/wp-content/uploads/2023/12/Agente-de-Viajes-1-1024x819.png" alt="Servicio de Conserjería Premium">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Servicio de Conserjería Premium</p>
+          <a href="/servicios/CONC001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Servicio de Habitaciones 24h -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media.gq.com.mx/photos/6155f165f3951529d43a0743/16:9/w_2991,h_1682,c_limit/GettyImages-56807633-lo-que-no-debes-pedir-de-room-service.jpg" alt="Servicio de Habitaciones 24h">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Servicio de Habitaciones 24h</p>
+          <a href="/servicios/ROOM001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Servicio de Mayordomo Personal -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://poloandtweed.com/wp-content/uploads/2023/02/Blog-Photos-5.png" alt="Servicio de Mayordomo Personal">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Servicio de Mayordomo Personal</p>
+          <a href="/servicios/BUTLER001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Traslados Privados de Lujo -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/09/5b/57/2a.jpg" alt="Traslados Privados de Lujo">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Traslados Privados de Lujo</p>
+          <a href="/servicios/TRANS001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Salones para Eventos Privados -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media-cdn.tripadvisor.com/media/photo-s/07/c5/bc/b0/grandhotel-giessbach.jpg" alt="Salones para Eventos Privados">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Salones para Eventos Privados</p>
+          <a href="/servicios/EVENT001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Lavandería y Tintorería Premium -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://www.love2laundry.com/blog/wp-content/uploads/2023/06/shutterstock_1019517997.jpg" alt="Lavandería y Tintorería Premium">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Lavandería y Tintorería Premium</p>
+          <a href="/servicios/LAUND001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Gimnasio Fitness Premium -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://www.grandhotelpalace.gr/sites/default/files/styles/pagefull/public/130640-gym.jpg?itok=kGXeTJxG" alt="Gimnasio Fitness Premium">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Gimnasio Fitness Premium</p>
+          <a href="/servicios/GYM001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Boutique de Souvenirs de Lujo -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://images.e-guma.ch/2644/events/f6684d91df1e4f8d90b9eb326908f654.jpeg" alt="Boutique de Souvenirs de Lujo">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Boutique de Souvenirs de Lujo</p>
+          <a href="/servicios/SHOP001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Servicio de Valet Parking -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://staffhotel.es/assets/2024/02/valet-hotel.jpg" alt="Servicio de Valet Parking">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Servicio de Valet Parking</p>
+          <a href="/servicios/PARK001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Cama de Lujo para Mascotas -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media.architecturaldigest.com/photos/56c7a8c1cd3bcb326e99b482/16:9/w_2580,c_limit/pet-friendly-luxury-hotels-01.jpg?mbid=social_retweet" alt="Cama de Lujo para Mascotas">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Cama de Lujo para Mascotas</p>
+          <a href="/servicios/PET001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Menú Gourmet para Mascotas -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://thesaucemag.com/wp-content/uploads/2024/08/dog-friendly-restaurants-london-megans-scaled.jpg" alt="Menú Gourmet para Mascotas">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Menú Gourmet para Mascotas</p>
+          <a href="/servicios/PET002" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Servicio de Paseos Premium -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://ichef.bbci.co.uk/ace/standard/2560/cpsprodpb/ddb5/live/6a81be00-0ee6-11f0-9471-fd068d782b6b.jpg" alt="Servicio de Paseos Premium">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Servicio de Paseos Premium</p>
+          <a href="/servicios/PET003" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Pet-Sitting Profesional -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://valleypetsitting.com/wp-content/uploads/2022/04/valley-pet-sitting-dogs-cats.jpg" alt="Pet-Sitting Profesional">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Pet-Sitting Profesional</p>
+          <a href="/servicios/PET004" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Spa y Grooming para Mascotas -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://hiccpet.com/cdn/shop/articles/benefits-of-grooming-your-pet-featured-image.png?v=1719858000" alt="Spa y Grooming para Mascotas">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Spa y Grooming para Mascotas</p>
+          <a href="/servicios/PET005" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Kit de Bienvenida Pet-Friendly -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://americanlifestylemag.com/wp-content/uploads/2020/02/dog-lover-basket-intext.jpg" alt="Kit de Bienvenida Pet-Friendly">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Kit de Bienvenida Pet-Friendly</p>
+          <a href="/servicios/PET006" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Cena Maridaje en Bodega Privada -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media.istockphoto.com/id/991732782/es/foto/primer-plano-de-sumiller-sirviendo-vino-tinto-en-el-restaurante.jpg?s=612x612&w=0&k=20&c=pKjj9hZWme99DxzTBBL5pxPFAQCYvZLVmvtAmHPjh2M=" alt="Cena Maridaje en Bodega Privada">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Cena Maridaje en Bodega Privada</p>
+          <a href="/servicios/WINE001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Tours en Helicóptero sobre Praga -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0f/76/db/df.jpg" alt="Tours en Helicóptero sobre Praga">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Tours en Helicóptero sobre Praga</p>
+          <a href="/servicios/HELI001" class="cta">
+            <span class="hover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Cena Romántica en Barco Privado -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img src="https://berqwp-cdn.sfo3.cdn.digitaloceanspaces.com/cache/dubriani.com/wp-content/uploads/2022/07/Image-01-png.webp" alt="Cena Romántica en Barco Privado">
+        </div>
+        <div class="flip-card-back">
+          <p class="title-card">Cena Romántica en Barco Privado</p>
+          <a href="/servicios/FLOAT001" class="cta">
+            <span class="hover-underline-animationhover-underline-animation"> Ver más </span>
+            <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 46 16">
+              <path id="Path_10" data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(30)">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="cc-arrow cc-next" aria-label="Siguiente">›</button>
+</section>
+
+    
+  </main>
+
+  <footer th:replace="~{fragmentos :: footer}"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous">
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.cc-track');
+    const prevBtn = document.querySelector('.cc-prev');
+    const nextBtn = document.querySelector('.cc-next');
+
+    const scrollAmount = 190 + 16; // Ancho tarjeta + gap
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+  
+</body>
+
+
+</html>

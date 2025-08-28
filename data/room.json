@@ -1,0 +1,28 @@
+{
+  "rooms" : [ {
+    "id" : "ROOM001",
+    "numeroHabitacion" : "101",
+    "tipo" : "Suite",
+    "disponible" : true
+  }, {
+    "id" : "ROOM002",
+    "numeroHabitacion" : "102",
+    "tipo" : "Doble",
+    "disponible" : false
+  }, {
+    "id" : "ROOM003",
+    "numeroHabitacion" : "103",
+    "tipo" : "Sencilla",
+    "disponible" : true
+  }, {
+    "id" : "ROOM004",
+    "numeroHabitacion" : "201",
+    "tipo" : "Doble",
+    "disponible" : true
+  }, {
+    "id" : "ROOM005",
+    "numeroHabitacion" : "202",
+    "tipo" : "Suite",
+    "disponible" : false
+  } ]
+}
