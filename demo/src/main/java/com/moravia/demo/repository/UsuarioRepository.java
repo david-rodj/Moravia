@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UsuarioRepository {
     private final ObjectMapper mapper = new ObjectMapper()
             .enable(SerializationFeature.INDENT_OUTPUT);
-    private final Path dataPath = Path.of("/usuarios.json");
+    private final Path dataPath = Path.of("data/usuarios.json");
 
     public List<Usuario> findAll() {
         try {
