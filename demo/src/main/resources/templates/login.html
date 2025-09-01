@@ -2,17 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Moravia Hotel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Moravia Hotel</title>
+
+  <!-- (Opcional) Bootstrap si ya lo usas en el proyecto -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" th:href="@{/css/header.css}" />
-  <link rel="stylesheet" th:href="@{/css/navbar.css}" />
-  <link rel="stylesheet" th:href="@{/css/footer.css}" />
-  <link rel="stylesheet" th:href="@{/css/landing.css}" />
+
+  <!-- Tus estilos globales, si los necesitas -->
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
-  <link rel="stylesheet" th:href="@{/css/servicioscl.css}">
+
+  <!-- Hoja de estilos del login (la que armamos) -->
+  <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -20,42 +24,54 @@
     rel="stylesheet">
 </head>
 
+<body>
   <div class="auth-wrap">
+    <video class="bg-video" autoplay muted loop playsinline th:poster="@{/images/bg-login.jpg}">
+      <source src="/img/video_login.mp4" type="video/mp4" />
+      <!-- Fallback: si el navegador no soporta video, usa la imagen por CSS -->
+    </video>
+
+
     <div class="auth-card">
+
+      <!-- Encabezado: logo + bienvenido -->
       <div class="auth-head">
-        <img class="auth-logo" th:src="@{/img/logo.png}" alt="Moravia Hotel" />
-        <h1 class="auth-title">Iniciar sesión</h1>
+        <!-- Usa th:src para servir desde /static -->
+        <img th:src="@{/img/logo_blue.png}" alt="Moravia Hotel" class="auth-logo" height="70px">
+        <h1 class="auth-title">Bienvenido</h1>
+        <p class="auth-sub">Ingresa a tu cuenta para continuar</p>
       </div>
-      <p class="auth-sub">Accede con tu correo y contraseña.</p>
 
-      <!-- Mensajes Spring Security -->
-      <div class="alert error" th:if="${param.error}">Correo o contraseña inválidos.</div>
-      <div class="alert success" th:if="${param.logout}">Has cerrado sesión.</div>
-      <div class="alert success" th:if="${param.registered}">¡Registro exitoso! Inicia sesión.</div>
+      <!-- Mensajes (opcional) -->
+      <div class="alert error" th:if="${param.error}">Correo o contraseña incorrectos.</div>
+      <div class="alert success" th:if="${param.logout}">Sesión cerrada correctamente.</div>
+      <div class="alert success" th:if="${param.registered}">Cuenta creada. Inicia sesión.</div>
 
+      <!-- Formulario -->
       <form th:action="@{/login}" method="post" novalidate>
-        <!-- CSRF -->
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
         <div class="field">
-          <label for="username">Correo</label>
-          <!-- Spring Security espera name="username" -->
-          <input id="username" name="username" type="email" placeholder="tu@correo.com" required />
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" required autocomplete="email" placeholder="tu@correo.com">
         </div>
 
         <div class="field">
-          <label for="password">Contraseña</label>
-          <!-- Spring Security espera name="password" -->
-          <input id="password" name="password" type="password" placeholder="••••••••" required />
+          <label for="clave">Contraseña</label>
+          <input id="clave" name="clave" type="password" required autocomplete="current-password"
+            placeholder="••••••••">
         </div>
 
-        <button class="btn" type="submit">Entrar</button>
+        <div class="actions">
+          <button class="btn" type="submit">Entrar</button>
+          <a class="btn btn--outline">Crear cuenta</a>
+        </div>
       </form>
 
-      <p class="muted">¿No tienes cuenta? <a th:href="@{/clientes/nuevo}">Crear cuenta</a></p>
+      <p class="muted" style="margin-top: 10px;">
+        ¿Olvidaste tu contraseña? <a href="#">Recuperarla</a>
+      </p>
     </div>
   </div>
-
 </body>
 
 </html>

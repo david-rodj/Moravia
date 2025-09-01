@@ -46,24 +46,27 @@ public class UsuarioController {
         }
     }
 
-    // Mostrar formulario de edición
-    @GetMapping("/{idUsuario}/editar")
-    public String editarUsuario(@PathVariable String idUsuario, Model model, RedirectAttributes redirectAttributes) {
-        try {
-            Usuario usuario = usuarioService.findById(idUsuario);
-            if (usuario != null) {
-                model.addAttribute("usuario", usuario);
-                return "editar_usuario";
-            } else {
-                redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-                return "redirect:/";
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error al cargar el usuario");
-            return "redirect:/";
-        }
-    }
-
+    /*
+     * // Mostrar formulario de edición
+     * 
+     * @GetMapping("/{idUsuario}/editar")
+     * public String editarUsuario(@PathVariable String idUsuario, Model model,
+     * RedirectAttributes redirectAttributes) {
+     * try {
+     * Usuario usuario = usuarioService.findById(idUsuario);
+     * if (usuario != null) {
+     * model.addAttribute("usuario", usuario);
+     * return "editar_usuario";
+     * } else {
+     * redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+     * return "redirect:/";
+     * }
+     * } catch (Exception e) {
+     * redirectAttributes.addFlashAttribute("error", "Error al cargar el usuario");
+     * return "redirect:/";
+     * }
+     * }
+     */
     // Procesar actualización de usuario
     // Procesar actualización de usuario
     @PostMapping("/{idUsuario}/actualizar")
@@ -211,17 +214,29 @@ public class UsuarioController {
      * 
      * // Método para confirmar eliminación
      * 
-     * @GetMapping("/{idUsuario}/confirmar-eliminar")
-     * public String confirmarEliminar(@PathVariable String idUsuario, Model model,
-     * RedirectAttributes redirectAttributes) {
-     * Usuario usuario = usuarioService.findById(idUsuario);
-     * if (usuario != null) {
-     * model.addAttribute("usuario", usuario);
-     * return "confirmar_eliminar";
-     * } else {
-     * redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-     * return "redirect:/usuarios/lista";
-     * }
-     * }
      */
+    @GetMapping("/{idUsuario}/confirmar-eliminar")
+    public String confirmarEliminar(@PathVariable String idUsuario, Model model,
+            RedirectAttributes redirectAttributes) {
+        Usuario usuario = usuarioService.findById(idUsuario);
+        if (usuario != null) {
+            model.addAttribute("usuario", usuario);
+            return "confirmar_eliminar";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+            return "redirect:/usuarios/lista";
+        }
+    }
+
+    @PostMapping("/{idUsuario}/eliminar")
+    public String eliminarUsuario(@PathVariable String idUsuario, RedirectAttributes ra) {
+        try {
+            usuarioService.deleteById(idUsuario); // ajusta según tu repo
+            ra.addFlashAttribute("exito", "Usuario eliminado correctamente");
+        } catch (Exception e) {
+            ra.addFlashAttribute("error", "No se pudo eliminar el usuario: " + e.getMessage());
+        }
+        return "redirect:/";
+    }
+
 }
