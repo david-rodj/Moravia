@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 
 import com.moravia.demo.entities.Usuario;
 import com.moravia.demo.service.UsuarioService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
@@ -24,25 +27,33 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public String login(@RequestParam String correo, @RequestParam String clave, Model model, RedirectAttributes redirectAttributes) {
+  public String login(@RequestParam String correo, @RequestParam String clave,
+      Model model, HttpSession session) {
     try {
       Usuario usuario = usuarioService.findByEmail(correo);
       if (usuario != null) {
-        model.addAttribute("usuario", usuario);
         if (usuario.getClave().equals(clave)) {
-          return "index"; // Redirect to user profile page
+          // Guardar usuario en sesión
+          session.setAttribute("usuario", usuario);
+          session.setAttribute("authenticated", true);
+
+          // Redirigir a la landing page con parámetro de autenticación
+          return "redirect:/?auth=true";
         } else {
           model.addAttribute("error", "Clave incorrecta");
-          return "login"; // Back to login page with error
+          return "login";
         }
       } else {
-        // redirectAttributes is not defined, so just return redirect with error param
-        return "redirect:/?error=Usuario+no+encontrado";
+        return "redirect:/login?error=Usuario+no+encontrado";
       }
     } catch (Exception e) {
-      return "redirect:/?error=Error+al+cargar+el+usuario";
+      return "redirect:/login?error=Error+al+cargar+el+usuario";
     }
-    // This line is unreachable, but kept for structure
-    // return "redirect:/"; // Redirigir a la página principal después del login
+  }
+
+  @GetMapping("/logout")
+  public String logout(HttpSession session) {
+    session.invalidate(); // Eliminar toda la sesión
+    return "redirect:/?logout=true";
   }
 }
