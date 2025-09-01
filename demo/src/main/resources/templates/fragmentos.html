@@ -1,168 +1,144 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- templates/fragmentos.html -->
-    <header th:fragment="header">
-      <div class="logo">
-        <a href="/"><img src="/img/logo_old_white.png" alt="Logo" /></a>
-        <a class="titulo-logo" href="/"
-          ><img src="/img/title_old_white.png" alt="Title"
-        /></a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- templates/fragmentos.html -->
+  <header th:fragment="header">
+    <div class="logo">
+      <a href="/"><img src="/img/logo_old_white.png" alt="Logo" /></a>
+      <a class="titulo-logo" href="/"><img src="/img/title_old_white.png" alt="Title" /></a>
+    </div>
+
+    <a href="reservas.html" class="button2">Reservar</a>
+
+    <!-- AQUÍ ESTÁ EL CAMBIO: Condición para mostrar Login o Perfil -->
+    <div th:if="${!authenticated}" class="login-section">
+      <a th:href="@{/login}" class="button2">Login</a>
+    </div>
+
+    <div th:if="${authenticated}" class="user-profile-circle">
+      <div class="user-dropdown">
+        <button class="user-avatar-circle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <img th:src="${usuario.fotoPerfil != null ? usuario.fotoPerfil : '/img/default-avatar.png'}"
+            th:alt="${usuario.nombre}" class="profile-circle-img" />
+        </button>
+
+        <!-- Dropdown Menu -->
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li class="dropdown-header">
+            <div class="user-info">
+              <strong th:text="${usuario.nombre}">Nombre Usuario</strong>
+              <small th:text="${usuario.correo}">correo@ejemplo.com</small>
+            </div>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="/usuarios/{usuario.idUsuario}">Mi Perfil</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/mis-reservas">Mis Reservas</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/configuracion">Configuración</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item text-danger" th:href="@{/logout}">Cerrar Sesión</a>
+          </li>
+        </ul>
       </div>
+    </div>
 
-      <a href="reservas.html" class="button2">Reservar</a>
+    <!-- Botón hamburguesa (sin cambios) -->
+    <button class="hamburger" type="button" data-bs-toggle="offcanvas" data-bs-target="#navOffcanvas"
+      aria-controls="navOffcanvas" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
 
-      <!-- AQUÍ ESTÁ EL CAMBIO: Condición para mostrar Login o Perfil -->
-      <div th:if="${!authenticated}" class="login-section">
-        <a th:href="@{/login}" class="button2">Login</a>
+    <!-- Offcanvas (sin cambios) -->
+    <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="navOffcanvas"
+      aria-labelledby="navOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="navOffcanvasLabel">The Moravia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
       </div>
-
-      <div th:if="${authenticated}" class="user-profile-circle">
-        <div class="user-dropdown">
-          <button
-            class="user-avatar-circle"
-            id="userDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              th:src="${usuario.fotoPerfil != null ? usuario.fotoPerfil : '/img/default-avatar.png'}"
-              th:alt="${usuario.nombre}"
-              class="profile-circle-img"
-            />
-          </button>
-
-          <!-- Dropdown Menu -->
-          <ul
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="userDropdown"
-          >
-            <li class="dropdown-header">
-              <div class="user-info">
-                <strong th:text="${usuario.nombre}">Nombre Usuario</strong>
-                <small th:text="${usuario.correo}">correo@ejemplo.com</small>
-              </div>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/usuarios/{usuario.idUsuario}">Mi Perfil</a></li>
-            <li>
-              <a class="dropdown-item" href="/mis-reservas">Mis Reservas</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/configuracion">Configuración</a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item text-danger" th:href="@{/logout}"
-                >Cerrar Sesión</a
-              >
-            </li>
-          </ul>
-        </div>
+      <div class="offcanvas-body">
+        <ul class="menu">
+          <li><a href="#">Reserva</a></li>
+          <li><a href="#">Habitaciones</a></li>
+          <li><a href="/servicios/tabla">Nuestros servicios</a></li>
+          <li><a href="#">Historia</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
       </div>
+    </div>
 
-      <!-- Botón hamburguesa (sin cambios) -->
-      <button
-        class="hamburger"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#navOffcanvas"
-        aria-controls="navOffcanvas"
-        aria-label="Abrir menú"
-      >
-        <span></span><span></span><span></span>
-      </button>
-
-      <!-- Offcanvas (sin cambios) -->
-      <div
-        class="offcanvas offcanvas-end offcanvas-custom"
-        tabindex="-1"
-        id="navOffcanvas"
-        aria-labelledby="navOffcanvasLabel"
-      >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="navOffcanvasLabel">The Moravia</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Cerrar"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="menu">
-            <li><a href="#">Reserva</a></li>
-            <li><a href="#">Habitaciones</a></li>
-            <li><a href="/servicios/tabla">Nuestros servicios</a></li>
-            <li><a href="#">Historia</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <!-- Mensajes de estado (opcional - aparecerán como notificaciones flotantes) -->
-    <div
-      th:if="${loginSuccess}"
-      class="alert alert-success alert-dismissible fade show position-fixed"
-      style="top: 20px; right: 20px; z-index: 9999"
-      role="alert"
-    >
+    <!-- Mensajes de estado (opcional - puedes quitarlos si no los quieres) -->
+    <div th:if="${loginSuccess}" class="alert alert-success alert-dismissible fade show position-fixed"
+      style="top: 20px; right: 20px; z-index: 9999" role="alert">
       ¡Bienvenido! Has iniciado sesión correctamente.
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 
-    <div
-      th:if="${logoutSuccess}"
-      class="alert alert-info alert-dismissible fade show position-fixed"
-      style="top: 20px; right: 20px; z-index: 9999"
-      role="alert"
-    >
+    <div th:if="${logoutSuccess}" class="alert alert-info alert-dismissible fade show position-fixed"
+      style="top: 20px; right: 20px; z-index: 9999" role="alert">
       Sesión cerrada correctamente.
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
+  </header>
 
-    <footer th:fragment="footer">
-      <div class="footer-wrap">
-        <div class="footer-col news">
-          <p class="lead">
-            Tenemos numerosas novedades,<br />sé el primero en descubrirlas
-          </p>
-          <label for="correo" class="label">CORREO ELECTRÓNICO</label>
-          <form class="signup" action="#" method="post">
-            <input
-              type="email"
-              id="correo"
-              name="correo"
-              placeholder="tu@correo.com"
-              required
-            />
-            <button class="ButtonLog">Registrarse</button>
-          </form>
-        </div>
-        <div class="footer-col contact">
-          <hr class="datos" />
-          <address>
-            U Lužického semináře, 118 00 Malá Strana, Czechia<br />
-            +420 123 456 789<br />
-            <a href="mailto:reception@themoraviahotel.cz"
-              >reception@themoraviahotel.cz</a
-            >
-          </address>
-          <div class="footer-socials">
-            <!-- tus SVGs -->
-          </div>
-        </div>
-        <div class="footer-col brand">
-          <img src="/img/logo_old_white.png" alt="Escudo" class="crest" />
+  <!-- Mensajes de estado (opcional - aparecerán como notificaciones flotantes) -->
+  <div th:if="${loginSuccess}" class="alert alert-success alert-dismissible fade show position-fixed"
+    style="top: 20px; right: 20px; z-index: 9999" role="alert">
+    ¡Bienvenido! Has iniciado sesión correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+  <div th:if="${logoutSuccess}" class="alert alert-info alert-dismissible fade show position-fixed"
+    style="top: 20px; right: 20px; z-index: 9999" role="alert">
+    Sesión cerrada correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+  <footer th:fragment="footer">
+    <div class="footer-wrap">
+      <div class="footer-col news">
+        <p class="lead">
+          Tenemos numerosas novedades,<br />sé el primero en descubrirlas
+        </p>
+        <label for="correo" class="label">CORREO ELECTRÓNICO</label>
+        <form class="signup" action="#" method="post">
+          <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required />
+          <button class="ButtonLog">Registrarse</button>
+        </form>
+      </div>
+      <div class="footer-col contact">
+        <hr class="datos" />
+        <address>
+          U Lužického semináře, 118 00 Malá Strana, Czechia<br />
+          +420 123 456 789<br />
+          <a href="mailto:reception@themoraviahotel.cz">reception@themoraviahotel.cz</a>
+        </address>
+        <div class="footer-socials">
+          <!-- tus SVGs -->
         </div>
       </div>
-      <p class="legal">© 2025 The Moravia Hotel. All rights reserved.</p>
-    </footer>
-  </body>
+      <div class="footer-col brand">
+        <img src="/img/logo_old_white.png" alt="Escudo" class="crest" />
+      </div>
+    </div>
+    <p class="legal">© 2025 The Moravia Hotel. All rights reserved.</p>
+  </footer>
+</body>
+
 </html>
