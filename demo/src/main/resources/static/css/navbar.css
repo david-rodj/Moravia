@@ -100,15 +100,16 @@
 /* =========================================================
    SIDE NAVBAR (derecha) – usando el mismo contenedor .offcanvas-custom
    ========================================================= */
+   /*
 .offcanvas-custom {
   position: fixed !important;
   top: var(--header-h);
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
   bottom: 0;
   width: min(360px, 92vw);
   height: calc(100vh - var(--header-h));
-  transform: translateX(100%);
+  transform: translateX(-100%);
   visibility: hidden;
   opacity: 0;
   transition: transform 0.35s ease, opacity 0.25s ease, visibility 0.25s;
@@ -116,14 +117,46 @@
   border-left: 1px solid rgba(255, 255, 255, 0.18);
   border-top: 0;
   border-radius: 0 0 0 16px;
-  z-index: 1001; /* por encima del contenido */
+  z-index: 1001; */ /* por encima del contenido */ /*
+}
+  */
+
+/*
+.offcanvas-custom.show {
+  transform: translateX(0); */ /* entra desde la derecha */ /*
+  visibility: visible;
+  opacity: 1;
+} 
+*/
+
+/*para que salga de la izqiuerda*/
+/* Estado cerrado (izquierda) */
+.offcanvas-start.offcanvas-custom {
+  position: fixed !important;
+  top: var(--header-h);
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0;
+  width: min(360px, 92vw);
+  height: calc(100vh - var(--header-h));
+  transform: translateX(-100%) !important;
+  visibility: hidden;
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.25s ease, visibility 0.25s;
+  background-color: #1f5f87;
+  border-right: 1px solid rgba(255,255,255,0.18); /* borde del lado interior */
+  border-left: 0;
+  border-radius: 0 0 16px 0;
+  z-index: 1001;
 }
 
-.offcanvas-custom.show {
-  transform: translateX(0); /* entra desde la derecha */
+/* Abierto */
+.offcanvas-start.offcanvas-custom.show {
+  transform: translateX(0) !important;
   visibility: visible;
   opacity: 1;
 }
+
 
 /* cabecera del panel */
 .offcanvas-custom .offcanvas-header {
