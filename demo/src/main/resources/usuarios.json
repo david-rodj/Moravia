@@ -1,7 +1,6 @@
 {
   "usuarios": [
     {
-      "idUsuario": "1",
       "correo": "juan.perez@example.com",
       "clave": "clave123",
       "nombre": "Juan",
@@ -11,7 +10,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
-      "idUsuario": "2",
       "correo": "maria.gomez@example.com",
       "clave": "pass456",
       "nombre": "María",
@@ -21,7 +19,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/women/2.jpg"
     },
     {
-      "idUsuario": "3",
       "correo": "carlos.lopez@example.com",
       "clave": "secure789",
       "nombre": "Carlos",
@@ -31,7 +28,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/men/3.jpg"
     },
     {
-      "idUsuario": "4",
       "correo": "laura.martinez@example.com",
       "clave": "clave987",
       "nombre": "Laura",
@@ -41,7 +37,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/women/4.jpg"
     },
     {
-      "idUsuario": "5",
       "correo": "andres.ramirez@example.com",
       "clave": "pass321",
       "nombre": "Andrés",
@@ -51,7 +46,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/men/5.jpg"
     },
     {
-      "idUsuario": "6",
       "correo": "sofia.torres@example.com",
       "clave": "sofia456",
       "nombre": "Sofía",
@@ -61,7 +55,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/women/6.jpg"
     },
     {
-      "idUsuario": "7",
       "correo": "pedro.morales@example.com",
       "clave": "pedro789",
       "nombre": "Pedro",
@@ -71,7 +64,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/men/7.jpg"
     },
     {
-      "idUsuario": "8",
       "correo": "camila.hernandez@example.com",
       "clave": "camila123",
       "nombre": "Camila",
@@ -81,7 +73,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/women/8.jpg"
     },
     {
-      "idUsuario": "9",
       "correo": "diego.flores@example.com",
       "clave": "diego456",
       "nombre": "Diego",
@@ -91,7 +82,6 @@
       "fotoPerfil": "https://randomuser.me/api/portraits/men/9.jpg"
     },
     {
-      "idUsuario": "10",
       "correo": "valentina.rojas@example.com",
       "clave": "valen789",
       "nombre": "Valentina",

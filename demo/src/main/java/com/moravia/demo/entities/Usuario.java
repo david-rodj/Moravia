@@ -5,15 +5,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.*;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Usuario {
-    private String idUsuario;
+
+    @Id
+    @GeneratedValue
+    private Long idUsuario;
     
     @NotBlank(message = "El correo es obligatorio")
     @Email(message = "El formato del correo no es válido")
-    private String correo;
+    private String email;
     
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
@@ -35,4 +43,14 @@ public class Usuario {
     private String telefono;
     
     private String fotoPerfil;
+
+    public Usuario(String email, String clave, String nombre, String apellido, String cedula, String telefono, String fotoPerfil) {
+        this.email = email;
+        this.clave = clave;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.fotoPerfil = fotoPerfil;
+    }
 }

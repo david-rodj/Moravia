@@ -5,11 +5,13 @@ import com.moravia.demo.entities.Habitacion;
 
 public interface HabitacionService {
 
-    List<Habitacion> findAll();
+    public List<Habitacion> findAll();
 
-    Habitacion findById(String idHabitacion);
+    public Habitacion findById(String idHabitacion);
 
-    Habitacion save(Habitacion habitacion);
+    public void add(Habitacion habitacion);
 
-    Habitacion delete(String idHabitacion);
+    public void update(Habitacion habitacion);
+
+    public void deleteById(String idHabitacion);
 }

@@ -20,16 +20,21 @@ public class HabitacionServiceImpl implements HabitacionService {
 
     @Override
     public Habitacion findById(String idHabitacion) {
-        return repo.findById(idHabitacion);
+        return repo.findById(idHabitacion).orElse(null);
     }
 
     @Override
-    public Habitacion save(Habitacion habitacion) {
-        return repo.save(habitacion);
+    public void add(Habitacion habitacion) {
+        repo.save(habitacion);
     }
 
     @Override
-    public Habitacion delete(String idHabitacion) {
-        return repo.delete(idHabitacion);
+    public void update(Habitacion habitacion) {
+        repo.save(habitacion);
+    }
+
+    @Override
+    public void deleteById(String idHabitacion) {
+        repo.deleteById(idHabitacion);
     }
 }

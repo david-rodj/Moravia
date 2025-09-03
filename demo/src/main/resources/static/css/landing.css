@@ -585,3 +585,84 @@
     height: 240px;
   }
 }
+
+/* ===========================
+   LANDING: marco y hero
+   =========================== */
+
+/* Marco del contenido para que se vea como tu captura (márgenes laterales) */
+.landing {
+  width: min(1400px, 92%);
+  margin: 14px auto 0; /* espacio justo bajo el borde blanco del header */
+}
+
+/* Contenedor del hero */
+.landing .hero-main {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Imagen del hero (alto grande y recorte proporcional) */
+.landing .hero-main .hero-img {
+  width: 100%;
+  height: clamp(340px, 72vh, 820px);
+  object-fit: cover;
+  display: block;
+}
+
+/* Capa oscura suave para que el texto sea legible sobre la foto */
+.landing .hero-main .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.35));
+  pointer-events: none;
+}
+
+/* Bloque del título centrado en toda el área */
+.landing .hero-main .hero-title {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(12px, 3vw, 24px);
+}
+
+/* THE MORAVIA (muy grande) */
+.landing .hero-main .hero-title h1 {
+  margin: 0;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 0.95;
+  font-size: clamp(36px, 9vw, 128px);
+  text-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+
+/* Escudo entre las dos líneas */
+.landing .hero-main .hero-crest {
+  width: clamp(40px, 6vw, 72px);
+  height: auto;
+  margin: 0.3em 0 0.2em;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
+}
+
+/* HOTEL (segunda línea) */
+.landing .hero-main .hero-title h2 {
+  margin: 0;
+  color: #fff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(22px, 5.4vw, 72px);
+  text-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+
+/* Pequeños ajustes responsive */
+@media (max-width: 480px) {
+  .landing { width: 95%; }
+  .landing .hero-main .hero-crest { width: 44px; }
+}

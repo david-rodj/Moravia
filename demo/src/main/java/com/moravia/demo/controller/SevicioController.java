@@ -51,7 +51,7 @@
         // http://localhost:8081/servicios/delete/{idServicio}
         @GetMapping("/delete/{idServicio}")
         public String deleteServicio(@PathVariable String idServicio) {
-            servicioService.delete(idServicio);
+            servicioService.deleteById(idServicio);
             return "redirect:/servicios/tabla";
         }
 
@@ -67,7 +67,7 @@
 
         @PostMapping("/save")
         public String saveServicio(@ModelAttribute Servicio servicio) {
-            servicioService.save(servicio); 
+            servicioService.add(servicio); 
             return "redirect:/servicios/tabla";
     }
     }

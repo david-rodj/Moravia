@@ -10,8 +10,10 @@ public interface ServicioService {
 
     public Servicio findById(String idServicio);
 
-    public Servicio save(Servicio servicio);
+    public void add(Servicio servicio);
 
-    public Servicio delete(String idServicio);
+    public void update(Servicio servicio);
+
+    public void deleteById(String idServicio);
 
 }

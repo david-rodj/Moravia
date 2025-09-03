@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.moravia.demo.entities.Usuario;
 import com.moravia.demo.service.UsuarioService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
@@ -20,7 +19,7 @@ public class UsuarioController {
 
     // Mostrar perfil de usuario por ID
     @GetMapping("/{idUsuario}")
-    public String perfilUsuario(@PathVariable String idUsuario, Model model, RedirectAttributes redirectAttributes) {
+    public String perfilUsuario(@PathVariable Long idUsuario, Model model, RedirectAttributes redirectAttributes) {
         try {
             Usuario usuario = usuarioService.findById(idUsuario);
             if (usuario != null) {
@@ -38,7 +37,7 @@ public class UsuarioController {
 
     // Procesar actualización de usuario
     @PostMapping("/{idUsuario}/actualizar")
-    public String actualizarUsuario(@PathVariable String idUsuario,
+    public String actualizarUsuario(@PathVariable Long idUsuario,
             @Valid @ModelAttribute Usuario usuario,
             BindingResult result,
             @RequestParam(value = "nuevaClave", required = false) String nuevaClave,
@@ -51,7 +50,7 @@ public class UsuarioController {
         System.out.println("ID: " + idUsuario);
         System.out.println("Nombre: " + usuario.getNombre());
         System.out.println("Apellido: " + usuario.getApellido());
-        System.out.println("Email: " + usuario.getCorreo());
+        System.out.println("Email: " + usuario.getEmail());
         System.out.println("Cédula: " + usuario.getCedula());
         System.out.println("Teléfono: " + usuario.getTelefono());
         System.out.println("Foto: " + usuario.getFotoPerfil());
@@ -88,12 +87,12 @@ public class UsuarioController {
             System.out.println("ID: " + usuario.getIdUsuario());
             System.out.println("Nombre: " + usuario.getNombre());
             System.out.println("Apellido: " + usuario.getApellido());
-            System.out.println("Email: " + usuario.getCorreo());
+            System.out.println("Email: " + usuario.getEmail());
             System.out.println("Cédula: " + usuario.getCedula());
             System.out.println("Teléfono: " + usuario.getTelefono());
             System.out.println("Foto: " + usuario.getFotoPerfil());
 
-            Usuario usuarioActualizado = usuarioService.update(usuario);
+            usuarioService.update(usuario);
             System.out.println("Usuario actualizado exitosamente");
 
             redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado exitosamente");
@@ -160,7 +159,7 @@ public class UsuarioController {
      * }
      */
     @GetMapping("/{idUsuario}/confirmar-eliminar")
-    public String confirmarEliminar(@PathVariable String idUsuario, Model model,
+    public String confirmarEliminar(@PathVariable Long idUsuario, Model model,
             RedirectAttributes redirectAttributes) {
         Usuario usuario = usuarioService.findById(idUsuario);
         if (usuario != null) {
@@ -173,7 +172,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/{idUsuario}/eliminar")
-    public String eliminarUsuario(@PathVariable String idUsuario, RedirectAttributes ra) {
+    public String eliminarUsuario(@PathVariable Long idUsuario, RedirectAttributes ra) {
         try {
             usuarioService.deleteById(idUsuario); // ajusta según tu repo
             ra.addFlashAttribute("exito", "Usuario eliminado correctamente");

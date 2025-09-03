@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <header th:fragment="header">
+    <header th:fragment="header" class="site-header">
       <!-- Botón hamburguesa (lado izquierdo) -->
       <button
         class="hamburger"
@@ -59,7 +59,7 @@
               <li class="dropdown-header">
                 <div class="user-info">
                   <strong th:text="${usuario.nombre}">Nombre Usuario</strong>
-                  <small th:text="${usuario.correo}">correo@ejemplo.com</small>
+                  <small th:text="${usuario.email}">correo@ejemplo.com</small>
                 </div>
               </li>
               <li>

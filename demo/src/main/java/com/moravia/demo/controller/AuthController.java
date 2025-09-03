@@ -2,10 +2,8 @@ package com.moravia.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 import com.moravia.demo.entities.Usuario;
@@ -27,10 +25,10 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public String login(@RequestParam String correo, @RequestParam String clave,
+  public String login(@RequestParam String email, @RequestParam String clave,
       Model model, HttpSession session) {
     try {
-      Usuario usuario = usuarioService.findByEmail(correo);
+      Usuario usuario = usuarioService.findByEmail(email);
       if (usuario != null) {
         if (usuario.getClave().equals(clave)) {
           // Guardar usuario en sesión

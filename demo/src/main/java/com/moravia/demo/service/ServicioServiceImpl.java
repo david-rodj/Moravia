@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import com.moravia.demo.repository.ServicioRepository;
 
-import jakarta.annotation.PostConstruct;
-
 import com.moravia.demo.entities.Servicio;
 
 @Service
@@ -15,7 +13,6 @@ public class ServicioServiceImpl implements ServicioService {
     @Autowired
     ServicioRepository repo;
 
-
     @Override
     public List<Servicio> findAll() {
         return repo.findAll();
@@ -23,18 +20,22 @@ public class ServicioServiceImpl implements ServicioService {
 
     @Override
     public Servicio findById(String idServicio) {
-        return repo.findById(idServicio);
-    }
-
-
-    @Override
-    public Servicio save(Servicio servicio) {
-        return repo.save(servicio);
+        return repo.findById(idServicio).orElse(null);
     }
 
     @Override
-    public Servicio delete(String idServicio) {
-        return repo.delete(idServicio);
+    public void add(Servicio servicio) {
+        repo.save(servicio);
+    }
+
+    @Override
+    public void update(Servicio servicio) {
+        repo.save(servicio);
+    }
+
+    @Override
+    public void deleteById(String idServicio) {
+        repo.deleteById(idServicio);
     }
 
 }

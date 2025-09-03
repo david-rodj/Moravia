@@ -53,14 +53,14 @@ public class RoomController {
     // http://localhost:8081/rooms/delete/{id}
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable String id) {
-        roomService.delete(id);
+        roomService.deleteById(id);
         return "redirect:/rooms/tabla";
     }
 
     // http://localhost:8081/rooms/save
     @PostMapping("/save")
     public String saveRoom(@ModelAttribute Room room) {
-        roomService.save(room);
+        roomService.add(room);
         return "redirect:/rooms/tabla";
     }
 }

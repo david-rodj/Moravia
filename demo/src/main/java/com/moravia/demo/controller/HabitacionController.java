@@ -45,10 +45,6 @@ public class HabitacionController {
         return "detalle_habitacion";
     }
         
-
-
-
-
     // http://localhost:8081/habitaciones/nuevo
     @GetMapping("/nuevo")
     public String nuevaHabitacionForm(Model model) {
@@ -60,7 +56,7 @@ public class HabitacionController {
     // http://localhost:8081/habitaciones/delete/{idHabitacion}
     @GetMapping("/delete/{idHabitacion}")
     public String deleteHabitacion(@PathVariable String idHabitacion) {
-        habitacionService.delete(idHabitacion);
+        habitacionService.deleteById(idHabitacion);
         return "redirect:/habitaciones/tabla";
     }
 
@@ -77,7 +73,7 @@ public class HabitacionController {
     // http://localhost:8081/habitaciones/save
     @PostMapping("/save")
     public String saveHabitacion(@ModelAttribute Habitacion habitacion) {
-        habitacionService.save(habitacion);
+        habitacionService.add(habitacion);
         return "redirect:/habitaciones/tabla";
     }
 }

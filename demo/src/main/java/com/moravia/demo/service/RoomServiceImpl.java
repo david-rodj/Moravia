@@ -20,16 +20,21 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room findById(String id) {
-        return repo.findById(id);
+        return repo.findById(id).orElse(null);
     }
 
     @Override
-    public Room save(Room room) {
-        return repo.save(room);
+    public void add(Room room) {
+        repo.save(room);
     }
 
     @Override
-    public Room delete(String id) {
-        return repo.delete(id);
+    public void update(Room room) {
+        repo.save(room);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        repo.deleteById(id);
     }
 }

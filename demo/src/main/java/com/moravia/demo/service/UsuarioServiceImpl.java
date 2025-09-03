@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.moravia.demo.entities.Usuario;
 import com.moravia.demo.repository.UsuarioRepository;
 import java.util.List;
-import java.util.UUID;
-
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
@@ -19,38 +17,23 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario findById(String idUsuario) {
-        return repo.findById(idUsuario);
+    public Usuario findById(Long idUsuario) {
+        return repo.findById(idUsuario).get();
     }
 
     @Override
-    public Usuario save(Usuario usuario) {
-        // Generar ID único si no tiene uno
-        if (usuario.getIdUsuario() == null || usuario.getIdUsuario().isEmpty()) {
-            usuario.setIdUsuario(UUID.randomUUID().toString());
-        }
-        
-        return repo.save(usuario);
+    public void add(Usuario usuario) {
+        repo.save(usuario);
     }
 
     @Override
-    public Usuario update(Usuario usuario) {
-        return repo.update(usuario);
+    public void update(Usuario usuario) {
+        repo.save(usuario);
     }
 
     @Override
-    public boolean deleteById(String idUsuario) {
-        return repo.deleteById(idUsuario);
-    }
-
-    @Override
-    public boolean existsByEmail(String email) {
-        return repo.findByEmail(email) != null;
-    }
-
-    @Override
-    public boolean existsByCedula(String cedula) {
-        return repo.findByCedula(cedula) != null;
+    public void deleteById(Long idUsuario) {
+        repo.deleteById(idUsuario);
     }
 
     @Override
