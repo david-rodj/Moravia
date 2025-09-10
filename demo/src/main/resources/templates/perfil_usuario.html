@@ -34,7 +34,7 @@
           </h1>
           <p
             class="profile-username"
-            th:text="'@' + ${usuario.correo.split('@')[0]}"
+            th:text="'@' + ${usuario.email.split('@')[0]}"
           >
             @usuario
           </p>
@@ -129,19 +129,19 @@
                   </div>
 
                   <div class="col-md-6">
-                    <label for="correo" class="form-label">Email *</label>
+                    <label for="email" class="form-label">Email *</label>
                     <input
                       type="email"
                       class="form-control"
-                      id="correo"
-                      th:field="*{correo}"
-                      th:data-original="${usuario.correo}"
+                      id="email"
+                      th:field="*{email}"
+                      th:data-original="${usuario.email}"
                       required
                     />
                     <div
-                      th:if="${#fields.hasErrors('correo')}"
+                      th:if="${#fields.hasErrors('email')}"
                       class="text-danger small mt-1"
-                      th:errors="*{correo}"
+                      th:errors="*{email}"
                     ></div>
                   </div>
 

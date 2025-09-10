@@ -9,6 +9,7 @@ import com.moravia.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -18,36 +19,87 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     // Mostrar perfil de usuario por ID
+    // Alternativa: Cambiar el parámetro a String y convertir manualmente
     @GetMapping("/{idUsuario}")
-    public String perfilUsuario(@PathVariable Long idUsuario, Model model, RedirectAttributes redirectAttributes) {
+    public String perfilUsuario(@PathVariable String idUsuario, Model model,
+            RedirectAttributes redirectAttributes, HttpSession session) {
+        // Verificar autenticación
+        Boolean authenticated = (Boolean) session.getAttribute("authenticated");
+
+        Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
+
+        if (authenticated == null || !authenticated || usuarioSesion == null) {
+            return "redirect:/login?error=Debe+iniciar+sesion+para+acceder";
+        }
+
         try {
-            Usuario usuario = usuarioService.findById(idUsuario);
+
+            System.out.println("idUsuario recibido: " + idUsuario);
+            // Convertir String a Long
+            Long id = Long.parseLong(idUsuario);
+
+            System.out.println("ID de usuario solicitado: " + id);
+
+            // Verificar que el usuario solo pueda ver su propio perfil
+            if (!usuarioSesion.getIdUsuario().equals(id)) {
+                redirectAttributes.addFlashAttribute("error", "No tiene permisos para ver este perfil");
+                return "redirect:/usuarios/" + usuarioSesion.getIdUsuario();
+            }
+
+            Usuario usuario = usuarioService.findById(id);
             if (usuario != null) {
                 model.addAttribute("usuario", usuario);
                 return "perfil_usuario";
             } else {
-                redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
+                System.out.println("error Usuario no encontrado");
                 return "redirect:/";
             }
+        } catch (NumberFormatException e) {
+            System.out.println("error ID de usuario inválido");
+            return "redirect:/";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error al cargar el usuario");
+            System.out.println("error Error al cargar el usuario");
             return "redirect:/";
         }
     }
 
-    // Procesar actualización de usuario
+    // Aplicar el mismo cambio a los otros métodos
     @PostMapping("/{idUsuario}/actualizar")
-    public String actualizarUsuario(@PathVariable Long idUsuario,
+    public String actualizarUsuario(@PathVariable String idUsuario,
             @Valid @ModelAttribute Usuario usuario,
             BindingResult result,
             @RequestParam(value = "nuevaClave", required = false) String nuevaClave,
             @RequestParam(value = "confirmarClave", required = false) String confirmarClave,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+
+        Long id = null;
+
+        try {
+            id = Long.parseLong(idUsuario);
+            // usar 'id' para operaciones que requieren Long
+        } catch (NumberFormatException e) {
+            // manejar error de conversión
+        }
+
+        // Verificar autenticación
+        Boolean authenticated = (Boolean) session.getAttribute("authenticated");
+        Usuario usuarioSesion = (Usuario) session.getAttribute("usuario");
+
+        if (authenticated == null || !authenticated || usuarioSesion == null) {
+            return "redirect:/login?error=Debe+iniciar+sesion+para+acceder";
+        }
+
+        // Verificar que el usuario solo pueda actualizar su propio perfil
+        if (!usuarioSesion.getIdUsuario().equals(id)) {
+            redirectAttributes.addFlashAttribute("error", "No tiene permisos para modificar este perfil");
+            return "redirect:/usuarios/" + usuarioSesion.getIdUsuario();
+        }
 
         // DEBUG: Imprimir los datos recibidos
         System.out.println("=== DATOS RECIBIDOS ===");
-        System.out.println("ID: " + idUsuario);
+        System.out.println("ID: " + id);
         System.out.println("Nombre: " + usuario.getNombre());
         System.out.println("Apellido: " + usuario.getApellido());
         System.out.println("Email: " + usuario.getEmail());
@@ -68,7 +120,7 @@ public class UsuarioController {
             }
         } else {
             // Mantener la contraseña actual si no se proporciona una nueva
-            Usuario usuarioActual = usuarioService.findById(idUsuario);
+            Usuario usuarioActual = usuarioService.findById(id);
             if (usuarioActual != null) {
                 usuario.setClave(usuarioActual.getClave());
                 System.out.println("Contraseña actual mantenida");
@@ -81,7 +133,7 @@ public class UsuarioController {
         }
 
         try {
-            usuario.setIdUsuario(idUsuario); // Asegurar que el ID se mantenga
+            usuario.setIdUsuario(id); // Asegurar que el ID se mantenga
 
             System.out.println("=== DATOS A ACTUALIZAR ===");
             System.out.println("ID: " + usuario.getIdUsuario());
@@ -95,8 +147,11 @@ public class UsuarioController {
             usuarioService.update(usuario);
             System.out.println("Usuario actualizado exitosamente");
 
+            // Actualizar la sesión con los nuevos datos del usuario
+            session.setAttribute("usuario", usuario);
+
             redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado exitosamente");
-            return "redirect:/usuarios/" + idUsuario;
+            return "redirect:/usuarios/" + id;
         } catch (Exception e) {
             System.out.println("Error al actualizar usuario: " + e.getMessage());
             e.printStackTrace();
@@ -104,60 +159,9 @@ public class UsuarioController {
             model.addAttribute("usuario", usuario);
             return "perfil_usuario";
         }
+
     }
 
-    // Mostrar formulario de nuevo usuario
-    /*
-     * @GetMapping("/nuevo")
-     * public String nuevoUsuario(Model model) {
-     * model.addAttribute("usuario", new Usuario());
-     * return "crear_usuario";
-     * }
-     * 
-     * // Crear nuevo usuario
-     * 
-     * @PostMapping("/crear")
-     * public String crearUsuario(@Valid @ModelAttribute Usuario usuario,
-     * BindingResult result,
-     * 
-     * @RequestParam("confirmarClave") String confirmarClave,
-     * Model model,
-     * RedirectAttributes redirectAttributes) {
-     * 
-     * // Validar contraseñas
-     * if (!usuario.getClave().equals(confirmarClave)) {
-     * result.rejectValue("clave", "error.usuario", "Las contraseñas no coinciden");
-     * }
-     * 
-     * // Validar email único
-     * if (usuarioService.existsByEmail(usuario.getCorreo())) {
-     * result.rejectValue("correo", "error.usuario", "El email ya está registrado");
-     * }
-     * 
-     * // Validar cédula única
-     * if (usuarioService.existsByCedula(usuario.getCedula())) {
-     * result.rejectValue("cedula", "error.usuario",
-     * "La cédula ya está registrada");
-     * }
-     * 
-     * if (result.hasErrors()) {
-     * model.addAttribute("usuario", usuario);
-     * return "crear_usuario";
-     * }
-     * 
-     * try {
-     * Usuario nuevoUsuario = usuarioService.save(usuario);
-     * redirectAttributes.addFlashAttribute("mensaje",
-     * "Usuario creado exitosamente");
-     * return "redirect:/usuarios/" + nuevoUsuario.getIdUsuario();
-     * } catch (Exception e) {
-     * redirectAttributes.addFlashAttribute("error", "Error al crear el usuario: " +
-     * e.getMessage());
-     * model.addAttribute("usuario", usuario);
-     * return "crear_usuario";
-     * }
-     * }
-     */
     @GetMapping("/{idUsuario}/confirmar-eliminar")
     public String confirmarEliminar(@PathVariable Long idUsuario, Model model,
             RedirectAttributes redirectAttributes) {
@@ -167,7 +171,7 @@ public class UsuarioController {
             return "confirmar_eliminar";
         } else {
             redirectAttributes.addFlashAttribute("error", "Usuario no encontrado");
-            return "redirect:/usuarios/lista";
+            return "redirect:/";
         }
     }
 
@@ -179,7 +183,6 @@ public class UsuarioController {
         } catch (Exception e) {
             ra.addFlashAttribute("error", "No se pudo eliminar el usuario: " + e.getMessage());
         }
-        return "redirect:/";
+        return "redirect:/logout";
     }
-
 }

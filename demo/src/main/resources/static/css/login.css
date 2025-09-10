@@ -1,32 +1,65 @@
-/* ---- Login (pantalla) ---- */
+/* Contenedor a pantalla completa */
 .auth-wrap {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f6f8;
+
+  /* Imagen de respaldo si el video no carga */
+  background: url("/images/bg-login.jpg") center / cover no-repeat fixed;
+
   padding: 24px;
+  position: relative;
+  overflow: hidden; /* recorta el video a los bordes */
 }
 
+/* Capa oscura para contraste (sobre el video) */
+.auth-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
+  z-index: 1;
+}
+
+/* Video de fondo */
+.bg-video {
+  position: absolute;
+  inset: 0;           /* top/right/bottom/left: 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* llena sin deformar */
+  z-index: 0;         /* debajo del overlay y la tarjeta */
+}
+
+/* Tarjeta centrada (sube a z=2) */
 .auth-card {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 420px;
-  background: #fff;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: saturate(160%) blur(6px);
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
   padding: 28px;
 }
 
+
+/* Encabezado con logo y textos centrados */
 .auth-head {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 18px;
+  text-align: center;
 }
 
 .auth-logo {
-  height: 40px;
+  height: 56px;
   width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.12));
 }
 
 .auth-title {
@@ -36,7 +69,7 @@
 
 .auth-sub {
   color: #666;
-  margin: 0 0 18px;
+  margin: 0;
 }
 
 /* ---- Formulario ---- */
@@ -65,7 +98,15 @@ label {
   box-shadow: 0 0 0 3px rgba(11, 92, 255, .12);
 }
 
-/* ---- Botón ---- */
+/* ---- Acciones ---- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Botón principal */
 .btn {
   display: inline-block;
   width: 100%;
@@ -77,19 +118,21 @@ label {
   font-weight: 600;
   cursor: pointer;
   transition: transform .02s ease-in-out, opacity .2s;
+  text-align: center;
 }
 
-.btn:hover {
-  opacity: .92;
-}
+.btn:hover { opacity: .92; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
 
-.btn:active {
-  transform: translateY(1px);
+/* Botón secundario (Crear cuenta) */
+.btn--outline {
+  background: transparent;
+  color: #222;
+  border: 1px solid #d8dbe2;
 }
-
-.btn:disabled {
-  opacity: .6;
-  cursor: not-allowed;
+.btn--outline:hover {
+  background: #f7f8fa;
 }
 
 /* ---- Mensajes ---- */
@@ -100,15 +143,8 @@ label {
   font-size: 14px;
 }
 
-.alert.error {
-  background: #ffe8e6;
-  color: #9b1c13;
-}
-
-.alert.success {
-  background: #e7f6ec;
-  color: #116d3a;
-}
+.alert.error { background: #ffe8e6; color: #9b1c13; }
+.alert.success { background: #e7f6ec; color: #116d3a; }
 
 /* ---- Texto auxiliar ---- */
 .muted {
@@ -123,9 +159,7 @@ label {
   text-decoration: none;
 }
 
-.muted a:hover {
-  text-decoration: underline;
-}
+.muted a:hover { text-decoration: underline; }
 
 /* ---- Responsivo menor a 360px ---- */
 @media (max-width: 360px) {

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.moravia.demo.entities.Habitacion;
 import com.moravia.demo.service.HabitacionService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/habitaciones")
 public class HabitacionController {
@@ -31,16 +33,19 @@ public class HabitacionController {
 
     // http://localhost:8081/habitaciones/lista
     @GetMapping("/lista")
-    public String mostrarHabitaciones(Model model) {
+    public String mostrarHabitaciones(Model model, HttpSession session) {
         model.addAttribute("habitaciones", habitacionService.findAll());
         return "habitacionescl";
     }
 
     // http://localhost:8081/habitaciones/{idHabitacion}
-    
     @GetMapping("/{idHabitacion}")
-    public String detalleHabitacion(Model model, @PathVariable String idHabitacion) {
+    public String detalleHabitacion(Model model, @PathVariable String idHabitacion, HttpSession session) { 
         Habitacion habitacion = habitacionService.findById(idHabitacion);
+        if (habitacion == null) {
+            return "redirect:/habitaciones/lista?error=Habitacion+no+encontrada";
+        }
+        
         model.addAttribute("habitacion", habitacion);
         return "detalle_habitacion";
     }

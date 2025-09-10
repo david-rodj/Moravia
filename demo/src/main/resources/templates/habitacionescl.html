@@ -27,21 +27,21 @@
     <main>
         <section class="servicios-container">
             <!-- Iteración de servicios -->
-            <div th:each="servicio : ${servicios}" class="servicio-card">
+            <div th:each="habitacion : ${habitaciones}" class="servicio-card">
                 <!-- Imagen del servicio -->
                 <div class="servicio-img">
-                    <img th:src="${servicio.imagenUrl}" th:alt="${servicio.nombre}">
+                    <img th:src="${habitacion.imagenUrl}" th:alt="${habitacion.nombre}">
 
                 </div>
 
                 <!-- Info del servicio -->
                 <div class="servicio-info">
-                    <h2 th:text="${servicio.nombre}">Nombre del servicio</h2>
-                    <p th:text="${servicio.descripcion}">Descripción del servicio</p>
-                    <p class="precio">Precio: $<span th:text="${servicio.precio}">0.00</span></p>
+                    <h2 th:text="${habitacion.nombre}">Nombre del servicio</h2>
+                    <p th:text="${habitacion.descripcion}">Descripción del servicio</p>
+                    <p class="precio">Precio: $<span th:text="${habitacion.precio}">0.00</span></p>
 
                     <!-- Botón Ver más -->
-                    <a th:href="@{'/servicios/' + ${servicio.idServicio}}" class="cta">
+                    <a th:href="@{'/habitaciones/' + ${habitacion.idHabitacion}}" class="cta">
                         <span class="hover-underline-animation">Ver más</span>
                         <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
                             viewBox="0 0 46 16">

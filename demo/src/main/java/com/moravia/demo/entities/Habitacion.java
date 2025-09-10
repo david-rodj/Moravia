@@ -7,10 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Data
+import lombok.Setter;
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -33,7 +34,7 @@ public class Habitacion {
     
     private String imagenUrl;
 
-    @OneToMany(mappedBy = "tipo")
+    @OneToMany(mappedBy = "tipo", orphanRemoval = true, cascade = jakarta.persistence.CascadeType.ALL)
     private List<Room> rooms = new ArrayList<>(); // Lista de IDs de las rooms asociadas
 
     // Setter manual que MUTa la lista en lugar de reasignarla

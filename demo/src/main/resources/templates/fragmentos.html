@@ -31,7 +31,6 @@
       <div class="header-buttons">
         <a href="reservas.html" class="button2">Reservar</a>
 
-        <!-- AQUÍ ESTÁ EL CAMBIO: Condición para mostrar Login o Perfil -->
         <div th:if="${!authenticated}">
           <a th:href="@{/login}" class="button2">Login</a>
         </div>
@@ -66,7 +65,7 @@
                 <hr class="dropdown-divider" />
               </li>
               <li>
-                <a class="dropdown-item" href="/usuarios/{usuario.idUsuario}"
+                <a class="dropdown-item" th:href="@{/usuarios/{idUsuario}(idUsuario=${usuario.idUsuario})}"
                   >Mi Perfil</a
                 >
               </li>
@@ -108,9 +107,9 @@
         <div class="offcanvas-body">
           <ul class="menu">
             <li><a href="#">Reserva</a></li>
-            <li><a href="#">Habitaciones</a></li>
-            <li><a href="/servicios/tabla">Nuestros servicios</a></li>
-            <li><a href="#">Historia</a></li>
+            <li><a href="/habitaciones/lista">Habitaciones</a></li>
+            <li><a href="/servicios/lista">Nuestros servicios</a></li>
+            <li><a th:href="@{/historia}">Historia</a></li>
             <li><a href="#">Contacto</a></li>
           </ul>
         </div>
@@ -183,5 +182,8 @@
       </div>
       <p class="legal">© 2025 The Moravia Hotel. All rights reserved.</p>
     </footer>
+
+  
+  </body>
   </body>
 </html>
