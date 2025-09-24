@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.moravia.demo.entities.Room;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room, String> {
+public interface RoomRepository extends JpaRepository<Room, Long> {
 
 }

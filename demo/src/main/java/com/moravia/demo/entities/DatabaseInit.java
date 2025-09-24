@@ -8,6 +8,7 @@ import com.moravia.demo.repository.HabitacionRepository;
 import com.moravia.demo.repository.ServicioRepository;
 import com.moravia.demo.repository.RoomRepository;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.InputStream;
+import java.util.Random;
 
 @Controller
 @Transactional
@@ -60,7 +62,6 @@ public class DatabaseInit implements ApplicationRunner {
 
         for (JsonNode habitacionJson : jsonNode.get("habitaciones")) {
             Habitacion habitacion = new Habitacion(
-                    habitacionJson.get("idHabitacion").asText(),
                     habitacionJson.get("nombre").asText(),
                     habitacionJson.get("tipo").asText(),
                     habitacionJson.get("descripcion").asText(),
@@ -77,7 +78,6 @@ public class DatabaseInit implements ApplicationRunner {
 
         for (JsonNode servicioJson : jsonNode.get("servicios")) {
             Servicio servicio = new Servicio(
-                    servicioJson.get("idServicio").asText(),
                     servicioJson.get("nombre").asText(),
                     servicioJson.get("descripcion").asText(),
                     servicioJson.get("precio").asInt(),
@@ -89,20 +89,21 @@ public class DatabaseInit implements ApplicationRunner {
         inputStream = getClass().getClassLoader().getResourceAsStream("room.json");
         jsonNode = mapper.readTree(inputStream);
 
+        List<Habitacion> habitaciones = habitacionRepository.findAll();
+        Random random = new Random();
+
         for (JsonNode roomJson : jsonNode.get("rooms")) {
             Room room = new Room(
-                    roomJson.get("id").asText(),
                     roomJson.get("numeroHabitacion").asText(),
                     roomJson.get("disponible").asBoolean());
 
-            Habitacion habit = habitacionRepository.findById(roomJson.get("tipo").asText()).orElse(null);
-            room.setTipo(habit);
+            // Selecciona una habitación al azar
+            Habitacion habitacion = habitaciones.get(random.nextInt(habitaciones.size()));
+            room.setTipo(habitacion);
             roomRepository.save(room);
 
-            if (habit != null) {
-                habit.addRoom(room);
-                habitacionRepository.save(habit);
-            }
+            habitacion.addRoom(room);
+            habitacionRepository.save(habitacion);
         }
     }
 }

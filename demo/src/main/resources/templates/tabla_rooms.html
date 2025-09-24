@@ -70,10 +70,10 @@
               <!-- Acciones (alineadas a la derecha reutilizando estilos) -->
               <td class="service-price">
                 <div class="d-inline-flex gap-2">
-                  <a class="btn btn-sm btn-primary" th:href="@{/rooms/{id}(id=${room.id})}">Ver</a>
-                  <a class="btn btn-sm btn-warning" th:href="@{/rooms/editar/{id}(id=${room.id})}">Editar</a>
-                  <a class="btn btn-sm btn-danger"  th:href="@{/rooms/delete/{id}(id=${room.id})}"
-                     onclick="return confirm('¿Eliminar room?')">Eliminar</a>
+                  <a  th:href="@{/rooms/{id}(id=${room.id})}" class="ButtonLog">Ver</a>
+                  <a th:href="@{/rooms/editar/{id}(id=${room.id})}" class="ButtonLog">Editar</a>
+                  <a th:href="@{/rooms/delete/{id}(id=${room.id})}" 
+                     onclick="return confirm('¿Eliminar room?')" class="ButtonLog">Eliminar</a>
                 </div>
               </td>
             </tr>

@@ -28,7 +28,7 @@ public class RoomController {
     @Autowired
     private HabitacionService habitacionService;
 
-    // http://localhost:8081/rooms/tabla
+    // http://localhost:8081/rooms/tabla 
     @GetMapping("/tabla")
     public String tablaRooms(Model model, HttpSession session) {
         List<Room> rooms = roomService.findAll();
@@ -38,7 +38,7 @@ public class RoomController {
 
     // http://localhost:8081/rooms/{id}
     @GetMapping("/{id}")
-    public String detalleRoom(Model model, @PathVariable String id, HttpSession session) {
+    public String detalleRoom(Model model, @PathVariable Long id, HttpSession session) {
 
         System.out.println("ID recibido: " + id); // Depuración
         Room room = roomService.findById(id);
@@ -50,6 +50,8 @@ public class RoomController {
     // http://localhost:8081/rooms/nuevo
     @GetMapping("/nuevo")
     public String nuevoRoomForm(Model model) {
+        List<Habitacion> habitaciones = habitacionService.findAll();
+        model.addAttribute("habitaciones", habitaciones);
         model.addAttribute("room", new Room());
         model.addAttribute("modo", "crear");
         return "form_rooms"; // crea form_rooms.html
@@ -57,7 +59,7 @@ public class RoomController {
 
     // http://localhost:8081/rooms/editar/{id}
     @GetMapping("/editar/{id}")
-    public String editarRoomForm(@PathVariable String id, Model model, HttpSession session) {
+    public String editarRoomForm(@PathVariable Long id, Model model, HttpSession session) {
         List<Habitacion> habitaciones = habitacionService.findAll();
         model.addAttribute("habitaciones", habitaciones);
         Room room = roomService.findById(id);
@@ -70,7 +72,7 @@ public class RoomController {
 
     // http://localhost:8081/rooms/delete/{id}
     @GetMapping("/delete/{id}")
-    public String deleteRoom(@PathVariable String id) {
+    public String deleteRoom(@PathVariable Long id) {
         roomService.deleteById(id);
         return "redirect:/rooms/tabla";
     }
@@ -86,7 +88,13 @@ public class RoomController {
             room.setTipo(null); // por si envían vacío
         }
 
-        roomService.add(room);
+       if (room.getId() != null) {
+            // Es una actualización
+            roomService.update(room);
+        } else {
+            // Es una nueva habitación
+            roomService.add(room);
+        }
         return "redirect:/rooms/tabla";
     }
 }

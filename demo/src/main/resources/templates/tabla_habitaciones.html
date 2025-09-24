@@ -58,14 +58,14 @@
               <td class="habitacion-price">
                 <span class="price-symbol">$</span>
                 <span class="price-value" th:text="${habitacion.precio}">0</span>
-              </td>
+              </td>s
               <td class="habitacion-capacidad" th:text="${habitacion.capacidad}">0</td>
               <td class="habitacion-camas" th:text="${habitacion.numeroCamas}">0</td>
               <td class="habitacion-actions">
-                <a th:href="@{/habitaciones/editar/{idHabitacion}(idHabitacion=${habitacion.idHabitacion})}">
+                <a th:href="@{/habitaciones/editar/{idHabitacion}(idHabitacion=${habitacion.idHabitacion})}" class="ButtonLog">
                   Editar
                 </a>
-                <a th:href="@{/habitaciones/delete/{idHabitacion}(idHabitacion=${habitacion.idHabitacion})}">
+                <a th:href="@{/habitaciones/delete/{idHabitacion}(idHabitacion=${habitacion.idHabitacion})}" class="ButtonLog">
                   Eliminar
                 </a>
               </td>

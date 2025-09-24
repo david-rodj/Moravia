@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,8 @@ import lombok.Setter;
 public class Habitacion {
     
     @Id
-    private String idHabitacion;
+    @GeneratedValue
+    private Long idHabitacion;
 
     private String nombre;
     
@@ -34,7 +36,7 @@ public class Habitacion {
     
     private String imagenUrl;
 
-    @OneToMany(mappedBy = "tipo", orphanRemoval = true, cascade = jakarta.persistence.CascadeType.ALL)
+    @OneToMany(mappedBy = "tipo", cascade = jakarta.persistence.CascadeType.ALL)
     private List<Room> rooms = new ArrayList<>(); // Lista de IDs de las rooms asociadas
 
     // Setter manual que MUTa la lista en lugar de reasignarla
@@ -60,8 +62,7 @@ public class Habitacion {
         r.setTipo(null);
     }
 
-    public Habitacion(String idHabitacion, String nombre, String tipo, String descripcion, float precio, String capacidad, int numeroCamas, String imagenUrl) {
-        this.idHabitacion = idHabitacion;
+    public Habitacion(String nombre, String tipo, String descripcion, float precio, String capacidad, int numeroCamas, String imagenUrl) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.descripcion = descripcion;

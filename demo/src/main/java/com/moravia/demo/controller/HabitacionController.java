@@ -40,16 +40,16 @@ public class HabitacionController {
 
     // http://localhost:8081/habitaciones/{idHabitacion}
     @GetMapping("/{idHabitacion}")
-    public String detalleHabitacion(Model model, @PathVariable String idHabitacion, HttpSession session) { 
+    public String detalleHabitacion(Model model, @PathVariable Long idHabitacion, HttpSession session) {
         Habitacion habitacion = habitacionService.findById(idHabitacion);
         if (habitacion == null) {
             return "redirect:/habitaciones/lista?error=Habitacion+no+encontrada";
         }
-        
+
         model.addAttribute("habitacion", habitacion);
         return "detalle_habitacion";
     }
-        
+
     // http://localhost:8081/habitaciones/nuevo
     @GetMapping("/nuevo")
     public String nuevaHabitacionForm(Model model) {
@@ -60,16 +60,17 @@ public class HabitacionController {
 
     // http://localhost:8081/habitaciones/delete/{idHabitacion}
     @GetMapping("/delete/{idHabitacion}")
-    public String deleteHabitacion(@PathVariable String idHabitacion) {
+    public String deleteHabitacion(@PathVariable Long idHabitacion) {
         habitacionService.deleteById(idHabitacion);
         return "redirect:/habitaciones/tabla";
     }
 
     // http://localhost:8081/habitaciones/editar/{idHabitacion}
     @GetMapping("/editar/{idHabitacion}")
-    public String editarHabitacionForm(@PathVariable String idHabitacion, Model model) {
+    public String editarHabitacionForm(@PathVariable long idHabitacion, Model model) {
         Habitacion h = habitacionService.findById(idHabitacion);
-        if (h == null) return "redirect:/habitaciones/lista";
+        if (h == null)
+            return "redirect:/habitaciones/lista";
         model.addAttribute("habitacion", h);
         model.addAttribute("modo", "editar");
         return "form_habitaciones";
@@ -78,7 +79,13 @@ public class HabitacionController {
     // http://localhost:8081/habitaciones/save
     @PostMapping("/save")
     public String saveHabitacion(@ModelAttribute Habitacion habitacion) {
-        habitacionService.add(habitacion);
+        if (habitacion.getIdHabitacion() != null) {
+            // Es una actualización
+            habitacionService.update(habitacion);
+        } else {
+            // Es una nueva habitación
+            habitacionService.add(habitacion);
+        }
         return "redirect:/habitaciones/tabla";
     }
 }

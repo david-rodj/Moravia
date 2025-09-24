@@ -6,11 +6,11 @@ import java.util.List;
 public interface RoomService {
     public List<Room> findAll();
     
-    public Room findById(String id);
+    public Room findById(Long id);
     
     public void add(Room room);
 
     public void update(Room room);
     
-    public void deleteById(String id);
+    public void deleteById(Long id);
 }

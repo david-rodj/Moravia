@@ -1,6 +1,7 @@
 package com.moravia.demo.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,8 @@ import lombok.Setter;
 public class Room {
 
     @Id
-    private String id;                 // p.ej. ROOM001
+    @GeneratedValue
+    private Long id;                 // p.ej. ROOM001
     
     private String numeroHabitacion;   // p.ej. "101"
     
@@ -25,8 +27,7 @@ public class Room {
     @ManyToOne
     private Habitacion tipo; // Relación con la entidad Habitación 
 
-    public Room(String id, String numeroHabitacion, boolean disponible) {
-        this.id = id;
+    public Room(String numeroHabitacion, boolean disponible) {
         this.numeroHabitacion = numeroHabitacion;
         this.disponible = disponible;
     }

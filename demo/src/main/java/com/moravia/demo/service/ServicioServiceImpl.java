@@ -19,7 +19,7 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public Servicio findById(String idServicio) {
+    public Servicio findById(Long idServicio) {
         return repo.findById(idServicio).orElse(null);
     }
 
@@ -34,7 +34,7 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     @Override
-    public void deleteById(String idServicio) {
+    public void deleteById(Long idServicio) {
         repo.deleteById(idServicio);
     }
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.moravia.demo.entities.Servicio;
 
 @Repository
-public interface ServicioRepository extends JpaRepository<Servicio, String> {
+public interface ServicioRepository extends JpaRepository<Servicio, Long> {
 
 
 }

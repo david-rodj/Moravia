@@ -8,12 +8,12 @@ public interface ServicioService {
 
     public List<Servicio> findAll();
 
-    public Servicio findById(String idServicio);
+    public Servicio findById(Long idServicio);
 
     public void add(Servicio servicio);
 
     public void update(Servicio servicio);
 
-    public void deleteById(String idServicio);
+    public void deleteById(Long idServicio);
 
 }

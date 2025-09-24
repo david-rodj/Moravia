@@ -19,7 +19,7 @@ public class HabitacionServiceImpl implements HabitacionService {
     }
 
     @Override
-    public Habitacion findById(String idHabitacion) {
+    public Habitacion findById(Long idHabitacion) {
         return repo.findById(idHabitacion).orElse(null);
     }
 
@@ -34,7 +34,7 @@ public class HabitacionServiceImpl implements HabitacionService {
     }
 
     @Override
-    public void deleteById(String idHabitacion) {
+    public void deleteById(Long idHabitacion) {
         repo.deleteById(idHabitacion);
     }
 }

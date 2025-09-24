@@ -6,17 +6,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import com.moravia.demo.entities.Usuario;
+import com.moravia.demo.service.ServicioService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
 public class LandingController {
 
+    @Autowired
+    private ServicioService servicioService;
+
     // http://localhost:8081/
     @GetMapping("/")
-    public String landing(@RequestParam(value = "auth", required = false) String auth,
+    public String landing(
+            @RequestParam(value = "auth", required = false) String auth,
             @RequestParam(value = "logout", required = false) String logout,
-            Model model, HttpSession session) {
+            Model model,
+            HttpSession session) {
 
         // Verificar si hay usuario autenticado en sesión
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -38,6 +45,10 @@ public class LandingController {
             model.addAttribute("logoutSuccess", true);
         }
 
+        //Agregrar la lista de servicios al modelo 
+        model.addAttribute("servicios", servicioService.findAll());
+
+    
         return "index";
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.moravia.demo.entities.Habitacion;
 
 @Repository
-public interface HabitacionRepository extends JpaRepository<Habitacion, String> {
+public interface HabitacionRepository extends JpaRepository<Habitacion, Long> {
 
 }

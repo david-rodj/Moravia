@@ -1,6 +1,7 @@
 package com.moravia.demo.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,8 @@ import lombok.NoArgsConstructor;
 public class Servicio {
     
     @Id
-    private String idServicio;
+    @GeneratedValue
+    private Long idServicio;
     
     private String nombre;
     
@@ -22,4 +24,11 @@ public class Servicio {
     private float precio;
     
     private String imagenUrl;
+
+    public Servicio(String nombre, String descripcion, float precio, String imagenUrl) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagenUrl = imagenUrl;
+    }
 }
